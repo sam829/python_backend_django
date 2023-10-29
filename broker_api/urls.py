@@ -21,14 +21,12 @@ from notes.views import NotesViewSet
 
 # Notes routes
 notes_router = routers.SimpleRouter()
-notes_router.register(
-    r'notes',
-    NotesViewSet,
-    basename='note'
-)
+notes_router.register(r"notes", NotesViewSet, basename="note")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # API
-    path('api/', include(notes_router.urls))
+    path("admin/", admin.site.urls),
+    # Notes router for CRUD
+    path("api/", include(notes_router.urls)),
+    # Customer Routes
+    path("customer/", include('notes.urls'))
 ]
